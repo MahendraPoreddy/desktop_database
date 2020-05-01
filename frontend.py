@@ -3,7 +3,7 @@ import backend
 
 
 window=Tk()
-window.wm_title("BookStore")
+window.wm_title("Sale_details")
 
 def view_command():
     list1.delete(0,END)
@@ -12,13 +12,13 @@ def view_command():
 
 def search_command():
     list1.delete(0,END)
-    for row in backend.search(title_text.get(),author_text.get(),year_text.get(),isbn_text.get()):
+    for row in backend.search(customer_name_text.get(),vehicle_model_text.get(),chassis_no_text.get(),reg_no_text.get()):
         list1.insert(END,row)
 
 def add_command():
-    backend.insert(title_text.get(),author_text.get(),year_text.get(),isbn_text.get())
+    backend.insert(customer_name_text.get(),vehicle_model_text.get(),chassis_no_text.get(),reg_no_text.get())
     list1.delete(0,END)
-    list1.insert(END,(title_text.get(),author_text.get(),year_text.get(),isbn_text.get()))
+    list1.insert(END,(customer_name_text.get(),vehicle_model_text.get(),chassis_no_text.get(),reg_no_text.get()))
 
 def get_selected_row(event):
     try:
@@ -37,7 +37,7 @@ def get_selected_row(event):
         pass
 
 def update_command():
-    backend.update(selected_tuple[0],title_text.get(),author_text.get(),year_text.get(),isbn_text.get())
+    backend.update(selected_tuple[0],customer_name_text.get(),vehicle_model_text.get(),chassis_no_text.get(),reg_no_text.get())
 
 
 
@@ -49,42 +49,42 @@ def delete_command():
 
 
 
-l1=Label(window,text="title")
+l1=Label(window,text="customer_name")
 l1.grid(row=0,column=0)
 
 
-l2=Label(window,text="author")
+l2=Label(window,text="vehicle_model")
 l2.grid(row=0,column=2)
 
 
-l3=Label(window,text="year")
+l3=Label(window,text="chassis_no")
 l3.grid(row=1,column=0)
 
 
-l4=Label(window,text="isbn")
+l4=Label(window,text="reg_no")
 l4.grid(row=1,column=2)
 
-title_text=StringVar()
-e1=Entry(window,textvariable=title_text)
+customer_name_text=StringVar()
+e1=Entry(window,textvariable=customer_name_text,width=20)
 e1.grid(row=0,column=1)
 
 
-author_text=StringVar()
-e2=Entry(window,textvariable=author_text)
+vehicle_model_text=StringVar()
+e2=Entry(window,textvariable=vehicle_model_text,width=20)
 e2.grid(row=0,column=3)
 
 
-year_text=StringVar()
-e3=Entry(window,textvariable=year_text)
+chassis_no_text=StringVar()
+e3=Entry(window,textvariable=chassis_no_text,width=20)
 e3.grid(row=1,column=1)
 
 
-isbn_text=StringVar()
-e4=Entry(window,textvariable=isbn_text)
+reg_no_text=StringVar()
+e4=Entry(window,textvariable=reg_no_text,width=20)
 e4.grid(row=1,column=3)
 
 
-list1=Listbox(window,height=6,width=35)
+list1=Listbox(window,height=15,width=100)
 list1.grid(row=2,column=0,rowspan=6,columnspan=2)
 
 list1.bind('<<ListboxSelect>>',get_selected_row)
